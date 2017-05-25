@@ -54,7 +54,7 @@ diff --git a/dlls/wined3d/glsl_shader.c b/dlls/wined3d/glsl_shader.c
 index 44e7090..429ae90 100644
 --- a/dlls/wined3d/glsl_shader.c
 +++ b/dlls/wined3d/glsl_shader.c
-@@ -6893,7 +6893,7 @@ static void set_glsl_shader_program(const struct wined3d_context *context, const
+@@ -9611,7 +9611,7 @@ static void set_glsl_shader_program(const struct wined3d_context *context, const
      GLuint vs_id = 0;
      GLuint gs_id = 0;
      GLuint ps_id = 0;
