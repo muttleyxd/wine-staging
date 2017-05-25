@@ -82,7 +82,6 @@ warning()
 # Enable or disable all patchsets
 patch_enable_all ()
 {
-	enable_Compiler_Warnings="$1"
 	enable_Coverity="$1"
 	enable_Pipelight="$1"
 	enable_Staging="$1"
