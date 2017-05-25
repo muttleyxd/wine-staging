@@ -82,6 +82,7 @@ warning()
 # Enable or disable all patchsets
 patch_enable_all ()
 {
+	enable_Compiler_Warnings="$1"
 	enable_Coverity="$1"
 	enable_Pipelight="$1"
 	enable_Staging="$1"
@@ -2601,7 +2602,6 @@ fi
 # |
 if test "$enable_Compiler_Warnings" -eq 1; then
 	patch_apply Compiler_Warnings/0001-ole32-Fix-compilation-with-recent-versions-of-gcc.patch
-	patch_apply Compiler_Warnings/0018-Appease-the-blessed-version-of-gcc-4.5-when-Werror-i.patch
 	patch_apply Compiler_Warnings/0019-dsound-Avoid-implicit-cast-of-interface-pointer.patch
 	patch_apply Compiler_Warnings/0020-amstream-Avoid-implicit-cast-of-interface-pointer.patch
 	patch_apply Compiler_Warnings/0021-d2d1-Avoid-implicit-cast-of-interface-pointer.patch
@@ -3058,7 +3058,6 @@ if test "$enable_api_ms_win_Stub_DLLs" -eq 1; then
 	patch_apply api-ms-win-Stub_DLLs/0023-shcore-Implement-stub-for-GetDpiForMonitor.patch
 	patch_apply api-ms-win-Stub_DLLs/0025-shcore-Add-stub-for-GetProcessDpiAwareness.patch
 	patch_apply api-ms-win-Stub_DLLs/0026-feclient-Add-stub-dll.patch
-	patch_apply api-ms-win-Stub_DLLs/0027-uiautomationcore-Add-dll-and-stub-some-functions.patch
 	(
 		printf '%s\n' '+    { "Michael Müller", "kernelbase: Add dll and add stub for QuirkIsEnabled.", 1 },';
 		printf '%s\n' '+    { "Michael Müller", "api-ms-win-core-heap-l2-1-0: Add dll.", 1 },';
@@ -3538,7 +3537,6 @@ fi
 # |
 if test "$enable_d3d9_Tests" -eq 1; then
 	patch_apply d3d9-Tests/0001-d3d9-tests-Avoid-test-failures-on-specific-Nvidia-graphic-.patch
-	patch_apply d3d9-Tests/0002-d3d9-tests-Avoid-crash-when-surface-and-texture-crea.patch
 	patch_apply d3d9-Tests/0003-d3d11-tests-Avoid-test-failures.patch
 	(
 		printf '%s\n' '+    { "Sebastian Lackner", "d3d9/tests: Avoid test failures on specific Nvidia graphic cards.", 1 },';
@@ -3774,8 +3772,6 @@ fi
 # |   *	dlls/d3dx9_36/d3dx9_private.h, dlls/d3dx9_36/mesh.c, dlls/d3dx9_36/skin.c, dlls/d3dx9_36/tests/mesh.c
 # |
 if test "$enable_d3dx9_36_Dummy_Skininfo" -eq 1; then
-	patch_apply d3dx9_36-Dummy_Skininfo/0001-d3dx9_36-Return-dummy-skininfo-interface-in-D3DXLoad.patch
-	patch_apply d3dx9_36-Dummy_Skininfo/0002-d3dx9_36-tests-Add-initial-tests-for-dummy-skininfo-.patch
 	(
 		printf '%s\n' '+    { "Michael Müller", "d3dx9_36: Return dummy skininfo interface in D3DXLoadSkinMeshFromXof when skin information is unavailable.", 1 },';
 		printf '%s\n' '+    { "Michael Müller", "d3dx9_36/tests: Add initial tests for dummy skininfo interface.", 1 },';
@@ -4828,8 +4824,6 @@ fi
 # | 	dlls/kernel32/thread.c, dlls/kernelbase/kernelbase.spec, include/winnt.h
 # |
 if test "$enable_kernel32_Processor_Group" -eq 1; then
-	patch_apply kernel32-Processor_Group/0001-kernel32-Implement-some-processor-group-functions.patch
-	patch_apply kernel32-Processor_Group/0002-kernel32-Add-stub-for-SetThreadIdealProcessorEx.patch
 	(
 		printf '%s\n' '+    { "Michael Müller", "kernel32: Implement some processor group functions.", 1 },';
 		printf '%s\n' '+    { "Michael Müller", "kernel32: Add stub for SetThreadIdealProcessorEx.", 1 },';
@@ -8095,14 +8089,6 @@ fi
 # | 	dlls/vulkan/vulkan_main.c, dlls/vulkan/vulkan_private.h, dlls/vulkan/vulkan_thunks.c
 # |
 if test "$enable_vulkan_Vulkan_Implementation" -eq 1; then
-	patch_apply vulkan-Vulkan_Implementation/0001-vulkan-Initial-implementation.patch
-	patch_apply vulkan-Vulkan_Implementation/0002-vulkan-Implement-vkGetPhysicalDeviceWin32Presentatio.patch
-	patch_apply vulkan-Vulkan_Implementation/0003-vulkan-Use-binary-search-to-lookup-function-in-is_nu.patch
-	patch_apply vulkan-Vulkan_Implementation/0004-vulkan-Try-to-load-libvulkan.so.1.patch
-	patch_apply vulkan-Vulkan_Implementation/0005-vulkan-Enumerate-VK_KHR_win32_surface-only-one-time-.patch
-	patch_apply vulkan-Vulkan_Implementation/0006-vulkan-Update-to-spec-version-1.0.30-no-VK_EXT_debug.patch
-	patch_apply vulkan-Vulkan_Implementation/0007-vulkan-Improve-vkGetPhysicalDeviceWin32PresentationS.patch
-	patch_apply vulkan-Vulkan_Implementation/0008-vulkan-Only-convert-VkDescriptor-Image-Buffer-Info-w.patch
 	(
 		printf '%s\n' '+    { "Sebastian Lackner", "vulkan: Initial implementation.", 2 },';
 		printf '%s\n' '+    { "Michael Müller", "vulkan: Implement vkGetPhysicalDeviceWin32PresentationSupportKHR.", 1 },';
@@ -8691,7 +8677,6 @@ fi
 # |   *	dlls/d3d9/tests/device.c, dlls/wined3d/device.c, dlls/wined3d/directx.c, dlls/wined3d/wined3d_gl.h
 # |
 if test "$enable_wined3d_Accounting" -eq 1; then
-	patch_apply wined3d-Accounting/0001-wined3d-Use-real-values-for-memory-accounting-on-NVI.patch
 	(
 		printf '%s\n' '+    { "Michael Müller", "wined3d: Use real values for memory accounting on NVIDIA cards.", 1 },';
 	) >> "$patchlist"
@@ -8735,13 +8720,11 @@ fi
 # |   *	dlls/wined3d/resource.c, dlls/wined3d/state.c, dlls/wined3d/surface.c, dlls/wined3d/swapchain.c, dlls/wined3d/texture.c
 # |
 if test "$enable_wined3d_Silence_FIXMEs" -eq 1; then
-	patch_apply wined3d-Silence_FIXMEs/0001-wined3d-Silence-repeated-Unhandled-blend-factor-0-me.patch
 	patch_apply wined3d-Silence_FIXMEs/0002-wined3d-Display-FIXME-for-cmp-function-0-only-once.patch
 	patch_apply wined3d-Silence_FIXMEs/0003-wined3d-Silence-repeated-resource_check_usage-FIXME.patch
 	patch_apply wined3d-Silence_FIXMEs/0004-wined3d-Print-FIXME-only-once-in-surface_cpu_blt.patch
 	patch_apply wined3d-Silence_FIXMEs/0005-wined3d-Silence-repeated-wined3d_swapchain_present-F.patch
 	patch_apply wined3d-Silence_FIXMEs/0006-wined3d-Silence-extremely-noisy-FIXME-in-wined3d_tex.patch
-	patch_apply wined3d-Silence_FIXMEs/0007-wined3d-Display-FIXME-only-once-when-blen-op-is-0.patch
 	patch_apply wined3d-Silence_FIXMEs/0008-wined3d-Silence-noisy-fixme-Unrecognized-stencil-op-.patch
 	(
 		printf '%s\n' '+    { "Sebastian Lackner", "wined3d: Silence repeated '\''Unhandled blend factor 0'\'' messages.", 1 },';
@@ -8846,7 +8829,6 @@ fi
 # |   *	dlls/d3d11/tests/d3d11.c, dlls/wined3d/context.c
 # |
 if test "$enable_wined3d_context_reacquire" -eq 1; then
-	patch_apply wined3d-context_reacquire/0001-wined3d-Avoid-crash-if-context_reacquire-is-called-w.patch
 	(
 		printf '%s\n' '+    { "Alistair Leslie-Hughes", "wined3d: Avoid crash if context_reacquire is called with NULL context.", 1 },';
 	) >> "$patchlist"
@@ -8868,7 +8850,6 @@ fi
 # | 	dlls/wined3d/wined3d_private.h
 # |
 if test "$enable_wined3d_CSMT_Main" -eq 1; then
-	patch_apply wined3d-CSMT_Main/9999-IfDefined.patch
 	(
 		printf '%s\n' '+    { "Sebastian Lackner", "wined3d: Add additional synchronization CS ops.", 1 },';
 		printf '%s\n' '+    { "Stefan Dösinger", "wined3d: Send blits through the command stream.", 1 },';
